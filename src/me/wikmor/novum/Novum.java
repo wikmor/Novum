@@ -11,5 +11,11 @@ public class Novum {
 
 		Person elvis = new Person("Elvis", 1);
 		System.out.println("elvis = " + elvis.getName() + ", age: " + elvis.getAge());
+
+		Employee employee = new Employee("CEO", 500_000);
+		employee.setName("Milena");
+		System.out.println("employee = " + employee.getName() + ", age: " + employee.getAge() + ", position: " + employee.getPosition() + ", salary: " + employee.getSalary());
+		employee.walk();
+		employee.eat();
 	}
 }
