@@ -30,11 +30,6 @@ public class Employee extends Person implements Nice, Rich {
 		return "Hey look at me!";
 	}
 
-	@Override
-	public void eat() {
-
-	}
-
 	String getPosition() {
 		return position;
 	}

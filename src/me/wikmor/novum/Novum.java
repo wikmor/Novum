@@ -17,5 +17,17 @@ public class Novum {
 		System.out.println("employee = " + employee.getName() + ", age: " + employee.getAge() + ", position: " + employee.getPosition() + ", salary: " + employee.getSalary());
 		employee.walk();
 		employee.eat();
+
+		Object myPerson = new Employee("CEO", 500_000);
+
+		if (myPerson instanceof Employee) {
+			System.out.println(((Employee) myPerson).getAge());
+		}
+
+		if (myPerson instanceof Nice) {
+			Nice nicePerson = (Nice) myPerson;
+
+			nicePerson.eat();
+		}
 	}
 }
