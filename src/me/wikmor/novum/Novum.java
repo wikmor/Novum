@@ -2,6 +2,7 @@ package me.wikmor.novum;
 
 import me.wikmor.novum.person.Employee;
 import me.wikmor.novum.person.Person;
+import me.wikmor.novum.person.attributes.Nice;
 
 public class Novum {
 
@@ -35,5 +36,15 @@ public class Novum {
 
 		// Cannot access because customMethod() is set to protected in Person class, which is in the different package and Novum isn't a child of Person
 		// ((Person) myPerson).customMethod();
+
+		Person newPerson1 = new Person("John", 900);
+		Person newPerson2 = new Person("John", 900);
+
+		// byte, short, int, long, double, float, char, boolean
+		// for primitives, use ==
+
+		// for objects, use equals, for objects other than strings you need to write you own custom equals method
+		if (newPerson1.equals(newPerson2))
+			System.out.println("person1 = person2");
 	}
 }

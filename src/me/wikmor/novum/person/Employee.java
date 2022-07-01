@@ -1,7 +1,7 @@
 package me.wikmor.novum.person;
 
-import me.wikmor.novum.Nice;
-import me.wikmor.novum.Rich;
+import me.wikmor.novum.person.attributes.Nice;
+import me.wikmor.novum.person.attributes.Rich;
 
 public class Employee extends Person implements Nice, Rich {
 
@@ -55,5 +55,10 @@ public class Employee extends Person implements Nice, Rich {
 
 	public void setSalary(double salary) {
 		this.salary = salary;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof Employee && ((Employee) obj).getPosition().equals(this.position) && ((Employee) obj).getSalary() == this.salary && super.equals(obj);
 	}
 }

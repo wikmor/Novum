@@ -1,4 +1,4 @@
-package me.wikmor.novum;
+package me.wikmor.novum.person.attributes;
 
 public interface Nice {
 
