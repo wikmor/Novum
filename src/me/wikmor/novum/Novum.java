@@ -1,5 +1,8 @@
 package me.wikmor.novum;
 
+import me.wikmor.novum.person.Employee;
+import me.wikmor.novum.person.Person;
+
 public class Novum {
 
 	public static void main(String[] args) {
@@ -29,5 +32,8 @@ public class Novum {
 
 			nicePerson.eat();
 		}
+
+		// Cannot access because customMethod() is set to protected in Person class, which is in the different package and Novum isn't a child of Person
+		// ((Person) myPerson).customMethod();
 	}
 }
