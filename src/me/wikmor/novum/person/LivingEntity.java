@@ -6,6 +6,8 @@ public abstract class LivingEntity {
 
 	public LivingEntity(String name) {
 		this.name = name;
+
+		EntityRegister.increaseRegisteredEntities();
 	}
 
 	public abstract void walk();

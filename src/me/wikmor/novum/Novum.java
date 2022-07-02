@@ -1,8 +1,12 @@
 package me.wikmor.novum;
 
+import me.wikmor.novum.house.House;
 import me.wikmor.novum.person.Employee;
+import me.wikmor.novum.person.EntityRegister;
 import me.wikmor.novum.person.Person;
 import me.wikmor.novum.person.attributes.Nice;
+import me.wikmor.novum.water.BottleRegister;
+import me.wikmor.novum.water.WaterBottle;
 
 public class Novum {
 
@@ -46,5 +50,17 @@ public class Novum {
 		// for objects, use equals, for objects other than strings you need to write you own custom equals method
 		if (newPerson1.equals(newPerson2))
 			System.out.println("person1 = person2");
+
+		House one = new House(250);
+		new House(2500);
+		new House(550);
+
+		// More advanced way, static fields and methods with non-static ones.
+		System.out.println("Registered houses: " + House.getRegisteredHouses());
+
+		System.out.println(Person.JOHN.getName());
+
+		// Beginner way, using dedicated class with only static fields and methods.
+		System.out.println("Registered entities: " + EntityRegister.getRegisteredEntities());
 	}
 }
