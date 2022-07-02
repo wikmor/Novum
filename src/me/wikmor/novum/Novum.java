@@ -62,5 +62,21 @@ public class Novum {
 
 		// Beginner way, using dedicated class with only static fields and methods.
 		System.out.println("Registered entities: " + EntityRegister.getRegisteredEntities());
+
+		WaterBottle polaris = new WaterBottle();
+		WaterBottle cisowianka = new WaterBottle("Cisowianka");
+		WaterBottle zywiec = new WaterBottle("Żywiec Zdrój", 0.5);
+		WaterBottle wojcieszowianka = new WaterBottle("Wojcieszowianka", 0.5, true);
+
+		System.out.println("\nMake: " + polaris.getName() + ", capacity: " + polaris.getCapacity() + ", is sparkling? " + polaris.isSparkling());
+		System.out.println("Make: " + cisowianka.getName() + ", capacity: " + cisowianka.getCapacity() + ", is sparkling? " + cisowianka.isSparkling());
+		System.out.println("Make: " + zywiec.getName() + ", capacity: " + zywiec.getCapacity() + ", is sparkling? " + zywiec.isSparkling());
+		System.out.println("Make: " + wojcieszowianka.getName() + ", capacity: " + wojcieszowianka.getCapacity() + ", is sparkling? " + wojcieszowianka.isSparkling());
+
+		// TODO How to print details of all water bottles using a loop?
+		//for (WaterBottle bottle : BottleRegister.getRegisteredBottles())
+		//	System.out.println("Make: " + );
+
+		System.out.println("Registered water bottles: " + BottleRegister.getRegisteredBottles());
 	}
 }
