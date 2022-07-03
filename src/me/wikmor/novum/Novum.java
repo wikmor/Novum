@@ -122,38 +122,69 @@ public class Novum {
 
 			message = scanner.nextLine();
 
-			if (mode == LEFT_HAND_NUMBER)
-				leftHandNumber = Double.parseDouble(message);
+			try {
+				if (mode == LEFT_HAND_NUMBER)
+					leftHandNumber = Double.parseDouble(message);
 
-			else if (mode == RIGHT_HAND_NUMBER)
-				rightHandNumber = Double.parseDouble(message);
-
-			else {
-				if ("+".equals(message))
-					System.out.println(leftHandNumber + " + " + rightHandNumber + " = " + (leftHandNumber + rightHandNumber));
-
-				else if ("-".equals(message))
-					System.out.println(leftHandNumber + " - " + rightHandNumber + " = " + (leftHandNumber - rightHandNumber));
-
-				else if ("/".equals(message))
-					System.out.println(leftHandNumber + " / " + rightHandNumber + " = " + leftHandNumber / rightHandNumber);
-
-				else if ("*".equals(message))
-					System.out.println(leftHandNumber + " * " + rightHandNumber + " = " + leftHandNumber * rightHandNumber);
-
-				else if ("%".equals(message))
-					System.out.println(leftHandNumber + " % " + rightHandNumber + " = " + leftHandNumber % rightHandNumber);
+				else if (mode == RIGHT_HAND_NUMBER)
+					rightHandNumber = Double.parseDouble(message);
 
 				else {
-					System.out.println("Invalid operator: " + message);
+					double result = 0;
 
-					continue;
+					if ("+".equals(message))
+						result = sum(leftHandNumber, rightHandNumber);
+
+					else if ("-".equals(message))
+						result = subtract(leftHandNumber, rightHandNumber);
+
+					else if ("/".equals(message))
+						result = divide(leftHandNumber, rightHandNumber);
+
+					else if ("*".equals(message))
+						result = multiply(leftHandNumber, rightHandNumber);
+
+					else if ("%".equals(message))
+						result = modulo(leftHandNumber, rightHandNumber);
+
+					else {
+						System.out.println("Invalid operator: " + message);
+
+						continue;
+					}
+
+					System.out.println(leftHandNumber + " " + message + " " + rightHandNumber + " = " + result);
 				}
+			} catch (NumberFormatException e) {
+				System.out.println("Invalid number: " + message);
+
+				continue;
 			}
 
 			mode++;
 		}
 
 		System.out.println("The program has quit. Good luck!");
+		scanner.close();
+	}
+
+	private double sum(double leftHandNumber, double rightHandNumber) {
+		return leftHandNumber + rightHandNumber;
+	}
+
+	private double subtract(double leftHandNumber, double rightHandNumber) {
+		return leftHandNumber - rightHandNumber;
+	}
+
+	private double divide(double leftHandNumber, double rightHandNumber) {
+		return leftHandNumber / rightHandNumber;
+	}
+
+	private double multiply(double leftHandNumber, double rightHandNumber) {
+		return leftHandNumber * rightHandNumber;
+	}
+
+	private double modulo(double leftHandNumber, double rightHandNumber) {
+		return leftHandNumber % rightHandNumber;
 	}
 }
