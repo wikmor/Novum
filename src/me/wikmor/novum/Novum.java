@@ -1,9 +1,11 @@
 package me.wikmor.novum;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
@@ -41,74 +43,11 @@ public class Novum {
 		//novum.testAccessModifiers();
 		//novum.testEquals();
 		//novum.testStatic();
-		//novum.testLists();
-		//novum.testSets();
-		novum.testQueue();
+		//novum.testList();
+		//novum.testSet();
+		//novum.testQueue();
+		novum.testMap();
 
-	}
-
-	private void testQueue() {
-		Queue<Integer> numbers = new ArrayBlockingQueue<>(3);
-
-		numbers.add(1);
-		numbers.add(10);
-		numbers.add(15550);
-
-		numbers.poll();
-
-		numbers.add(2);
-
-		System.out.println("Numbers: " + numbers);
-	}
-
-	private void testSets() {
-		Set<Integer> numbers = new HashSet<>();
-
-		numbers.add(1);
-		numbers.add(10);
-		numbers.add(15550);
-		numbers.add(2);
-
-		System.out.println("Numbers: " + numbers);
-	}
-
-	private void testLists() {
-		// int[] numbers = { 1, 5, 100 }; // Lack convenience methods such as .add()
-
-		List<Integer> numbersList = new ArrayList<>();
-		numbersList.add(1);
-		numbersList.add(5);
-		numbersList.add(100);
-
-		//numbersList.get(3); // Index 3 out of bounds for length 3
-
-		List<Integer> numbers = new ArrayList<>();
-
-		numbers.add(1);
-		numbers.add(10);
-		numbers.add(1);
-
-		for (int /* can be not Integer, because of Java auto-boxing */ number : numbers)
-			System.out.println(number);
-
-		for (int index = 0; index < numbers.size(); index++)
-			System.out.println(numbers.get(index));
-
-		System.out.println("Numbers before: " + numbers);
-
-		for (Iterator<Integer> iterator = numbers.iterator(); iterator.hasNext();) {
-			int number = iterator.next();
-
-			if (number < 5) {
-				iterator.remove();
-
-				continue;
-			}
-
-			System.out.println(number);
-		}
-
-		System.out.println("Numbers after: " + numbers);
 	}
 
 	private void loop() {
@@ -280,5 +219,88 @@ public class Novum {
 		//	System.out.println("Make: " + );
 
 		System.out.println("Registered water bottles: " + BottleRegister.getRegisteredBottles());
+	}
+
+	private void testList() {
+		// int[] numbers = { 1, 5, 100 }; // Lack convenience methods such as .add()
+
+		List<Integer> numbersList = new ArrayList<>();
+		numbersList.add(1);
+		numbersList.add(5);
+		numbersList.add(100);
+
+		//numbersList.get(3); // Index 3 out of bounds for length 3
+
+		List<Integer> numbers = new ArrayList<>();
+
+		numbers.add(1);
+		numbers.add(10);
+		numbers.add(1);
+
+		for (int /* can be not Integer, because of Java auto-boxing */ number : numbers)
+			System.out.println(number);
+
+		for (int index = 0; index < numbers.size(); index++)
+			System.out.println(numbers.get(index));
+
+		System.out.println("Numbers before: " + numbers);
+
+		for (Iterator<Integer> iterator = numbers.iterator(); iterator.hasNext();) {
+			int number = iterator.next();
+
+			if (number < 5) {
+				iterator.remove();
+
+				continue;
+			}
+
+			System.out.println(number);
+		}
+
+		System.out.println("Numbers after: " + numbers);
+	}
+
+	private void testSet() {
+		Set<Integer> numbers = new HashSet<>();
+
+		numbers.add(1);
+		numbers.add(10);
+		numbers.add(15550);
+		numbers.add(2);
+
+		System.out.println("Numbers: " + numbers);
+	}
+
+	private void testQueue() {
+		Queue<Integer> numbers = new ArrayBlockingQueue<>(3);
+
+		numbers.add(1);
+		numbers.add(10);
+		numbers.add(15550);
+
+		numbers.poll();
+
+		numbers.add(2);
+
+		System.out.println("Numbers: " + numbers);
+	}
+
+	private void testMap() {
+		Map<String, Integer> map = new HashMap<>();
+
+		map.put("hello", 500);
+		map.put("hello2", 200);
+		map.put("hello2", 5000);
+
+		map.remove("hello");
+
+		for (Map.Entry<String, Integer> entry : map.entrySet()) {
+			String word = entry.getKey();
+			int number = entry.getValue();
+
+			System.out.println(word + ": " + number);
+		}
+
+		System.out.println("Map: " + map);
 	}
 }
