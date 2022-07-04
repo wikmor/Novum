@@ -42,8 +42,7 @@ public class Novum {
 		String message = "";
 
 		int mode = LEFT_HAND_NUMBER;
-
-		double leftHandNumber = 0, rightHandNumber = 0;
+		double[] numbers = new double[2];
 
 		while (!message.equals("exit")) {
 
@@ -63,28 +62,28 @@ public class Novum {
 
 			try {
 				if (mode == LEFT_HAND_NUMBER)
-					leftHandNumber = Double.parseDouble(message);
+					numbers[0] = Double.parseDouble(message);
 
 				else if (mode == RIGHT_HAND_NUMBER)
-					rightHandNumber = Double.parseDouble(message);
+					numbers[1] = Double.parseDouble(message);
 
 				else {
 					double result = 0;
 
 					if ("+".equals(message))
-						result = sum(leftHandNumber, rightHandNumber);
+						result = sum(numbers[0], numbers[1]);
 
 					else if ("-".equals(message))
-						result = subtract(leftHandNumber, rightHandNumber);
+						result = subtract(numbers[0], numbers[1]);
 
 					else if ("/".equals(message))
-						result = divide(leftHandNumber, rightHandNumber);
+						result = divide(numbers[0], numbers[1]);
 
 					else if ("*".equals(message))
-						result = multiply(leftHandNumber, rightHandNumber);
+						result = multiply(numbers[0], numbers[1]);
 
 					else if ("%".equals(message))
-						result = modulo(leftHandNumber, rightHandNumber);
+						result = modulo(numbers[0], numbers[1]);
 
 					else {
 						System.out.println("Invalid operator: " + message);
@@ -92,7 +91,7 @@ public class Novum {
 						continue;
 					}
 
-					System.out.println(leftHandNumber + " " + message + " " + rightHandNumber + " = " + result);
+					System.out.println(numbers[0] + " " + message + " " + numbers[1] + " = " + result);
 				}
 
 			} catch (NumberFormatException e) {
