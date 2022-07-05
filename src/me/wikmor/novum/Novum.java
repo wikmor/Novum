@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import me.wikmor.novum.house.House;
@@ -47,8 +49,8 @@ public class Novum {
 		//novum.testSet();
 		//novum.testQueue();
 		//novum.testMap();
-		novum.testHashCode();
-
+		//novum.testHashCode();
+		novum.testTree();
 	}
 
 	private void loop() {
@@ -312,5 +314,28 @@ public class Novum {
 		map.put(new UniquePerson("hello"), 1);
 
 		System.out.println("Map: " + map);
+	}
+
+	private void testTree() {
+		Set<String> names = new TreeSet<>((first, second) -> second.compareTo(first));
+
+		names.add("Xatej");
+		names.add("Alex");
+		names.add("Bob");
+
+		System.out.println(names);
+
+		names.add("Nataly");
+
+		System.out.println(names);
+
+		Map<Integer, String> scores = new TreeMap<>((first, second) -> Integer.compare(second, first));
+
+		scores.put(5, "Matej");
+		scores.put(99, "Lisa");
+		scores.put(152353, "John");
+		scores.put(100, "Nataly");
+
+		System.out.println(scores);
 	}
 }
