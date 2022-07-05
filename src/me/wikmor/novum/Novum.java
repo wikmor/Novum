@@ -46,7 +46,8 @@ public class Novum {
 		//novum.testList();
 		//novum.testSet();
 		//novum.testQueue();
-		novum.testMap();
+		//novum.testMap();
+		novum.testHashCode();
 
 	}
 
@@ -300,6 +301,15 @@ public class Novum {
 
 			System.out.println(word + ": " + number);
 		}
+
+		System.out.println("Map: " + map);
+	}
+
+	private void testHashCode() {
+		Map<UniquePerson, Integer> map = new HashMap<>();
+
+		map.put(new UniquePerson("hello"), 1);
+		map.put(new UniquePerson("hello"), 1);
 
 		System.out.println("Map: " + map);
 	}
