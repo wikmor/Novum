@@ -50,7 +50,20 @@ public class Novum {
 		//novum.testQueue();
 		//novum.testMap();
 		//novum.testHashCode();
-		novum.testTree();
+		//novum.testTree();
+
+		int number = 10;
+
+		resursivePrint(number);
+	}
+
+	public static void resursivePrint(int number) {
+		if (number > 0) {
+			System.out.println(number);
+
+			number--;
+			resursivePrint(number);
+		}
 	}
 
 	private void loop() {
