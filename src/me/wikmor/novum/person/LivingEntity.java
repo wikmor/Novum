@@ -21,6 +21,11 @@ public abstract class LivingEntity {
 	}
 
 	@Override
+	public String toString() {
+		return "LivingEntity{name=" + this.name + "}";
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof LivingEntity && ((LivingEntity) obj).getName().equals(this.name);
 	}

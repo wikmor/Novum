@@ -36,6 +36,11 @@ public class Person extends LivingEntity {
 	}
 
 	@Override
+	public String toString() {
+		return "Person{name=" + this.getName() + ", age=" + this.age + "}";
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		/*if (obj instanceof Person) {
 			Person otherPerson = (Person) obj;

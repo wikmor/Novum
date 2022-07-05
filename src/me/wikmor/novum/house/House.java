@@ -17,6 +17,11 @@ public class House {
 		return size;
 	}
 
+	@Override
+	public String toString() {
+		return "House{size=" + this.size + "}";
+	}
+
 	public static int getRegisteredHouses() {
 		return registeredHouses;
 	}

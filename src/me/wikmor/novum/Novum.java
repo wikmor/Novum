@@ -51,19 +51,11 @@ public class Novum {
 		//novum.testMap();
 		//novum.testHashCode();
 		//novum.testTree();
+		novum.testToString();
 
-		int number = 10;
-
-		resursivePrint(number);
-	}
-
-	public static void resursivePrint(int number) {
-		if (number > 0) {
-			System.out.println(number);
-
-			number--;
-			resursivePrint(number);
-		}
+		/*int number = 10;
+		
+		resursivePrint(number);*/
 	}
 
 	private void loop() {
@@ -169,7 +161,7 @@ public class Novum {
 	}
 
 	private void testInheritanceAndPolymorphism() {
-		Employee employee = new Employee("CEO", 500_000);
+		Employee employee = new Employee("Wiktor", 20, "CEO", 500_000);
 		employee.setName("Milena");
 		System.out.println("employee = " + employee.getName() + ", age: " + employee.getAge() + ", position: " + employee.getPosition() + ", salary: " + employee.getSalary());
 		employee.walk();
@@ -177,7 +169,7 @@ public class Novum {
 	}
 
 	private void testCastingAndInstanceof() {
-		Object myPerson = new Employee("CEO", 500_000);
+		Object myPerson = new Employee("Milena", 20, "CEO", 500_000);
 
 		if (myPerson instanceof Employee) {
 			System.out.println(((Employee) myPerson).getAge());
@@ -351,4 +343,26 @@ public class Novum {
 
 		System.out.println(scores);
 	}
+
+	private void testToString() {
+		House house = new House(140);
+		House house2 = new House(1400);
+
+		System.out.println("This house is: " + house);
+		System.out.println("This house is: " + house2);
+
+		Employee employee = new Employee("John", 29, "CEO", 1_000_000);
+
+		System.out.println("Employee of the month: " + employee);
+	}
+
+	public static void resursivePrint(int number) {
+		if (number > 0) {
+			System.out.println(number);
+
+			number--;
+			resursivePrint(number);
+		}
+	}
+
 }

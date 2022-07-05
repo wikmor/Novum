@@ -8,8 +8,8 @@ public class Employee extends Person implements Nice, Rich {
 	private String position;
 	private double salary;
 
-	public Employee(String position, double salary) {
-		super("John", 5);
+	public Employee(String name, int age, String position, double salary) {
+		super(name, age);
 
 		this.position = position;
 		this.salary = salary;
@@ -55,6 +55,11 @@ public class Employee extends Person implements Nice, Rich {
 
 	public void setSalary(double salary) {
 		this.salary = salary;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee{name=" + this.getName() + ", age=" + this.getAge() + ", position=" + this.position + ", salary=" + this.salary + "}";
 	}
 
 	@Override
