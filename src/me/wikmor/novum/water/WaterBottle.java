@@ -25,7 +25,7 @@ public class WaterBottle {
 		this.capacity = capacity;
 		this.isSparkling = isSparkling;
 
-		BottleRegister.increaseRegisteredBottles();
+		BottleRegister.increaseRegisteredBottles(this);
 	}
 
 	public String getName() {
@@ -50,5 +50,10 @@ public class WaterBottle {
 
 	public void setSparkling(boolean isSparkling) {
 		this.isSparkling = isSparkling;
+	}
+
+	@Override
+	public String toString() {
+		return "WaterBottle{name=" + this.name + ", capacity=" + this.capacity + ", isSparkling=" + this.isSparkling + "}";
 	}
 }
