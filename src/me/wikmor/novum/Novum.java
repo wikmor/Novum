@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
@@ -44,7 +45,7 @@ public class Novum {
 		//novum.testCastingAndInstanceof();
 		//novum.testAccessModifiers();
 		//novum.testEquals();
-		novum.testStatic();
+		//novum.testStatic();
 		//novum.testList();
 		//novum.testSet();
 		//novum.testQueue();
@@ -52,6 +53,7 @@ public class Novum {
 		//novum.testHashCode();
 		//novum.testTree();
 		//novum.testToString();
+		novum.testRandom();
 
 		/*int number = 10;
 
@@ -358,6 +360,18 @@ public class Novum {
 		System.out.println("Employee of the month: " + employee);
 	}
 
+	private void testRandom() {
+
+		String[] letters = { "a", "b", "c", "d", "e", "f", "p" };
+		Random random = new Random();
+
+		for (int i = 0; i < 10; i++) {
+			//double randomNumber = random.nextDouble();
+
+			System.out.println(letters[random.nextInt(letters.length)]);
+		}
+	}
+
 	public static void resursivePrint(int number) {
 		if (number > 0) {
 			System.out.println(number);
@@ -366,5 +380,4 @@ public class Novum {
 			resursivePrint(number);
 		}
 	}
-
 }
