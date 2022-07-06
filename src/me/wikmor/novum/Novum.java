@@ -28,7 +28,7 @@ public class Novum {
 		Novum novum = new Novum();
 
 		try {
-			novum.loop();
+			//novum.loop();
 
 		} catch (Throwable t) {
 			System.out.println("Oops, an error occured: " + t.getMessage());
@@ -52,9 +52,10 @@ public class Novum {
 		//novum.testRandom();
 		//novum.testEnumeration();
 		//novum.testSwitch();
+		novum.testMultiDimensions();
 
 		/*int number = 10;
-		
+
 		resursivePrint(number);*/
 	}
 
@@ -106,22 +107,22 @@ public class Novum {
 
 					/*if ("+".equals(message))
 						result = sum(numbers[0], numbers[1]);
-					
+
 					else if ("-".equals(message))
 						result = subtract(numbers[0], numbers[1]);
-					
+
 					else if ("/".equals(message))
 						result = divide(numbers[0], numbers[1]);
-					
+
 					else if ("*".equals(message))
 						result = multiply(numbers[0], numbers[1]);
-					
+
 					else if ("%".equals(message))
 						result = modulo(numbers[0], numbers[1]);
-					
+
 					else {
 						System.out.println("Invalid operator: " + message);
-					
+
 						continue;
 					}*/
 
@@ -420,6 +421,21 @@ public class Novum {
 		}
 
 		System.out.println("End of the program");
+	}
+
+	private void testMultiDimensions() {
+		int[][] numbers = { { 1, 1 }, { 2, 2 }, { 3, 0 }, { 4, 55 }, { 5, -10 } };
+
+		for (int[] secondDimension : numbers)
+			for (int number : secondDimension)
+				System.out.println("Number: " + number);
+
+		Material[][][] chunkSectionMaterials = new Material[16][16][16];
+
+		chunkSectionMaterials[0][1][0] = Material.DIAMOND_BLOCK;
+
+		System.out.println(chunkSectionMaterials[0][0][0]);
+		System.out.println(chunkSectionMaterials[0][1][0]);
 	}
 
 	public static void resursivePrint(int number) {
