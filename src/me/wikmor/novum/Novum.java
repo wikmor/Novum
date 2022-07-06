@@ -54,10 +54,11 @@ public class Novum {
 		//novum.testTree();
 		//novum.testToString();
 		//novum.testRandom();
-		novum.testEnumeration();
+		//novum.testEnumeration();
+		novum.testSwitch();
 
 		/*int number = 10;
-
+		
 		resursivePrint(number);*/
 	}
 
@@ -362,7 +363,6 @@ public class Novum {
 	}
 
 	private void testRandom() {
-
 		String[] letters = { "a", "b", "c", "d", "e", "f", "p" };
 		Random random = new Random();
 
@@ -378,6 +378,40 @@ public class Novum {
 		System.out.println(employee);
 		Position.CEO.giveToPlayer("none");
 		Position.DOUCHE.giveToPlayer("none");
+	}
+
+	private void testSwitch() {
+		String weekDay = "Tuesday";
+
+		switch (weekDay) {
+			case "Monday":
+				System.out.println("It's Monday!");
+				break;
+
+			case "Tuesday":
+				System.out.println("It's Tuesday!");
+				break;
+
+			case "Wednesday":
+			case "Thursday":
+			case "Friday":
+			case "Saturday":
+			case "Sunday":
+				System.out.println("It's the rest of the week!");
+
+			default:
+				System.out.println("Unknown week!");
+				throw new RuntimeException("Unknown exception: " + weekDay);
+		}
+
+		// Java 17+
+		switch (weekDay) {
+			case "Monday" -> System.out.println("It's Monday!");
+			case "Tuesday" -> System.out.println("It's Tuesday!");
+			default -> System.out.println("It's another day!");
+		}
+
+		System.out.println("End of the program");
 	}
 
 	public static void resursivePrint(int number) {
