@@ -1,14 +1,15 @@
 package me.wikmor.novum.person;
 
+import me.wikmor.novum.Position;
 import me.wikmor.novum.person.attributes.Nice;
 import me.wikmor.novum.person.attributes.Rich;
 
 public class Employee extends Person implements Nice, Rich {
 
-	private String position;
+	private Position position;
 	private double salary;
 
-	public Employee(String name, int age, String position, double salary) {
+	public Employee(String name, int age, Position position, double salary) {
 		super(name, age);
 
 		this.position = position;
@@ -41,7 +42,7 @@ public class Employee extends Person implements Nice, Rich {
 		return "Hey look at me!";
 	}
 
-	public String getPosition() {
+	public Position getPosition() {
 		return position;
 	}
 
@@ -49,7 +50,7 @@ public class Employee extends Person implements Nice, Rich {
 		return salary;
 	}
 
-	public void setPosition(String position) {
+	public void setPosition(Position position) {
 		this.position = position;
 	}
 
