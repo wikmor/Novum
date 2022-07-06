@@ -24,15 +24,11 @@ import me.wikmor.novum.water.WaterBottle;
 
 public class Novum {
 
-	private static final int LEFT_HAND_NUMBER = 0;
-	private static final int RIGHT_HAND_NUMBER = 1;
-	private static final int OPERATOR = 2;
-
 	public static void main(String[] args) {
 		Novum novum = new Novum();
 
 		try {
-			//novum.loop();
+			novum.loop();
 
 		} catch (Throwable t) {
 			System.out.println("Oops, an error occured: " + t.getMessage());
@@ -55,7 +51,7 @@ public class Novum {
 		//novum.testToString();
 		//novum.testRandom();
 		//novum.testEnumeration();
-		novum.testSwitch();
+		//novum.testSwitch();
 
 		/*int number = 10;
 		
@@ -63,22 +59,21 @@ public class Novum {
 	}
 
 	private void loop() {
-
 		Scanner scanner = new Scanner(System.in);
 		String message = "";
 
-		int mode = LEFT_HAND_NUMBER;
+		int mode = CalculatorMode.LEFT_HAND_NUMBER.getNumber();
 		double[] numbers = new double[2];
 
 		while (!message.equals("exit")) {
 
-			if (mode > OPERATOR)
+			if (mode > CalculatorMode.OPERATOR.getNumber())
 				mode = 0;
 
-			if (mode == LEFT_HAND_NUMBER)
+			if (mode == CalculatorMode.LEFT_HAND_NUMBER.getNumber())
 				System.out.println("Please type the first number.");
 
-			else if (mode == RIGHT_HAND_NUMBER)
+			else if (mode == CalculatorMode.RIGHT_HAND_NUMBER.getNumber())
 				System.out.println("Please type the second number.");
 
 			else
@@ -87,35 +82,48 @@ public class Novum {
 			message = scanner.nextLine();
 
 			try {
-				if (mode == LEFT_HAND_NUMBER)
+				if (mode == CalculatorMode.LEFT_HAND_NUMBER.getNumber())
 					numbers[0] = Double.parseDouble(message);
 
-				else if (mode == RIGHT_HAND_NUMBER)
+				else if (mode == CalculatorMode.RIGHT_HAND_NUMBER.getNumber())
 					numbers[1] = Double.parseDouble(message);
 
 				else {
 					double result = 0;
 
-					if ("+".equals(message))
-						result = sum(numbers[0], numbers[1]);
+					switch (message) {
+						case "+" -> result = sum(numbers[0], numbers[1]);
+						case "-" -> result = subtract(numbers[0], numbers[1]);
+						case "/" -> result = divide(numbers[0], numbers[1]);
+						case "*" -> result = multiply(numbers[0], numbers[1]);
+						case "%" -> result = modulo(numbers[0], numbers[1]);
+						default -> {
+							System.out.println("Invalid operator: " + message);
 
+							continue;
+						}
+					}
+
+					/*if ("+".equals(message))
+						result = sum(numbers[0], numbers[1]);
+					
 					else if ("-".equals(message))
 						result = subtract(numbers[0], numbers[1]);
-
+					
 					else if ("/".equals(message))
 						result = divide(numbers[0], numbers[1]);
-
+					
 					else if ("*".equals(message))
 						result = multiply(numbers[0], numbers[1]);
-
+					
 					else if ("%".equals(message))
 						result = modulo(numbers[0], numbers[1]);
-
+					
 					else {
 						System.out.println("Invalid operator: " + message);
-
+					
 						continue;
-					}
+					}*/
 
 					System.out.println(numbers[0] + " " + message + " " + numbers[1] + " = " + result);
 				}
