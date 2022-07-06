@@ -52,10 +52,11 @@ public class Novum {
 		//novum.testRandom();
 		//novum.testEnumeration();
 		//novum.testSwitch();
-		novum.testMultiDimensions();
+		//novum.testMultiDimensions();
+		novum.testAnonymousAndInnerClasses();
 
 		/*int number = 10;
-
+		
 		resursivePrint(number);*/
 	}
 
@@ -107,22 +108,22 @@ public class Novum {
 
 					/*if ("+".equals(message))
 						result = sum(numbers[0], numbers[1]);
-
+					
 					else if ("-".equals(message))
 						result = subtract(numbers[0], numbers[1]);
-
+					
 					else if ("/".equals(message))
 						result = divide(numbers[0], numbers[1]);
-
+					
 					else if ("*".equals(message))
 						result = multiply(numbers[0], numbers[1]);
-
+					
 					else if ("%".equals(message))
 						result = modulo(numbers[0], numbers[1]);
-
+					
 					else {
 						System.out.println("Invalid operator: " + message);
-
+					
 						continue;
 					}*/
 
@@ -436,6 +437,73 @@ public class Novum {
 
 		System.out.println(chunkSectionMaterials[0][0][0]);
 		System.out.println(chunkSectionMaterials[0][1][0]);
+	}
+
+	private void testAnonymousAndInnerClasses() {
+		Nice nice = new Nice() {
+
+			@Override
+			public void smile(int intensity) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void eat() {
+				// TODO Auto-generated method stub
+				Nice.super.eat();
+			}
+
+		};
+
+		Object[] objects = new Object[] { 1, Position.CEO };
+
+		join(objects, object -> {
+
+			if (object instanceof Integer) {
+				return ((Integer) object).toString();
+			}
+
+			if (object instanceof Position) {
+				return ((Position) object).name();
+			}
+
+			return object.toString();
+		});
+	}
+
+	static String join(Object[] objects, Joiner joiner) {
+		List<String> convertedWords = new ArrayList<>();
+
+		for (Object object : objects)
+			convertedWords.add(joiner.convertToString(object));
+
+		return String.join(", ", convertedWords);
+	}
+
+	public interface Joiner {
+
+		String convertToString(Object object);
+	}
+
+	public void methodHere() {
+
+	}
+
+	public /*static*/ class Demo {
+
+		Demo() {
+			this.methodHere();
+			Novum.this.methodHere();
+		}
+
+		public void methodHere() {
+
+		}
+
+		public static void demo() {
+
+		}
 	}
 
 	public static void resursivePrint(int number) {
