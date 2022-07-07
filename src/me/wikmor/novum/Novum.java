@@ -1,6 +1,7 @@
 package me.wikmor.novum;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -13,6 +14,10 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import me.wikmor.novum.house.House;
 import me.wikmor.novum.person.Employee;
@@ -54,10 +59,11 @@ public class Novum {
 		//novum.testSwitch();
 		//novum.testMultiDimensions();
 		//novum.testAnonymousAndInnerClasses();
-		novum.testStaticConstructorAndInitializers();
+		//novum.testStaticConstructorAndInitializers();
+		novum.testLambda();
 
 		/*int number = 10;
-		
+
 		resursivePrint(number);*/
 	}
 
@@ -109,22 +115,22 @@ public class Novum {
 
 					/*if ("+".equals(message))
 						result = sum(numbers[0], numbers[1]);
-					
+
 					else if ("-".equals(message))
 						result = subtract(numbers[0], numbers[1]);
-					
+
 					else if ("/".equals(message))
 						result = divide(numbers[0], numbers[1]);
-					
+
 					else if ("*".equals(message))
 						result = multiply(numbers[0], numbers[1]);
-					
+
 					else if ("%".equals(message))
 						result = modulo(numbers[0], numbers[1]);
-					
+
 					else {
 						System.out.println("Invalid operator: " + message);
-					
+
 						continue;
 					}*/
 
@@ -538,6 +544,46 @@ public class Novum {
 		static {
 			System.out.println("static call");
 		}
+	}
+
+	private void testLambda() {
+		//convertNicePerson(new Nice() = anonymous class);
+		//convertNicePerson(intensity -> System.out.println("Smiling with " + intensity + " intensity"));
+
+		convertNicePerson(t -> System.out.println(t));
+
+		convertNicePerson2(Integer::parseInt);
+
+		List<String> messages = Arrays.asList("grass", "ass", "asshole", "beer");
+		List<String> clearedMessages = messages.stream().filter(message -> message.contains("ass")).collect(Collectors.toList());
+
+		System.out.println(clearedMessages);
+
+		/*join(new Consumer<String>() {
+		
+			@Override
+			public void accept(String t) {
+				System.out.println(t);
+			}
+		});*/
+
+		join(System.out::println);
+	}
+
+	static void convertNicePerson(Consumer<String> consumer) {
+		consumer.accept("Hello");
+	}
+
+	static void convertNicePerson2(Function<String, Integer> function) {
+		function.apply("100");
+	}
+
+	static void convertNicePerson3(Supplier<String> function) {
+		function.get();
+	}
+
+	static void join(Consumer<String> consumer) {
+		consumer.accept("Hello from method reference!");
 	}
 
 	public static void resursivePrint(int number) {
