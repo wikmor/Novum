@@ -63,7 +63,7 @@ public class Novum {
 		novum.testLambda();
 
 		/*int number = 10;
-
+		
 		resursivePrint(number);*/
 	}
 
@@ -115,22 +115,22 @@ public class Novum {
 
 					/*if ("+".equals(message))
 						result = sum(numbers[0], numbers[1]);
-
+					
 					else if ("-".equals(message))
 						result = subtract(numbers[0], numbers[1]);
-
+					
 					else if ("/".equals(message))
 						result = divide(numbers[0], numbers[1]);
-
+					
 					else if ("*".equals(message))
 						result = multiply(numbers[0], numbers[1]);
-
+					
 					else if ("%".equals(message))
 						result = modulo(numbers[0], numbers[1]);
-
+					
 					else {
 						System.out.println("Invalid operator: " + message);
-
+					
 						continue;
 					}*/
 
@@ -560,7 +560,7 @@ public class Novum {
 		System.out.println(clearedMessages);
 
 		/*join(new Consumer<String>() {
-		
+
 			@Override
 			public void accept(String t) {
 				System.out.println(t);
@@ -582,6 +582,12 @@ public class Novum {
 		function.get();
 	}
 
+	/**
+	 *
+	 * @param consumer
+	 * @deprecated do not use because it's bugged and will crash and boom your computer lol
+	 */
+	@Deprecated
 	static void join(Consumer<String> consumer) {
 		consumer.accept("Hello from method reference!");
 	}
