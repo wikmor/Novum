@@ -53,7 +53,8 @@ public class Novum {
 		//novum.testEnumeration();
 		//novum.testSwitch();
 		//novum.testMultiDimensions();
-		novum.testAnonymousAndInnerClasses();
+		//novum.testAnonymousAndInnerClasses();
+		novum.testStaticConstructorAndInitializers();
 
 		/*int number = 10;
 		
@@ -503,6 +504,39 @@ public class Novum {
 
 		public static void demo() {
 
+		}
+	}
+
+	private void testStaticConstructorAndInitializers() {
+		Map<String, Integer> map = new HashMap<>() {
+			{
+				put("String", 10);
+			}
+		};
+
+		new Baby() {
+			{
+				System.out.println("Hello!");
+			}
+		};
+		new Baby();
+		new Baby();
+		new Baby();
+
+	}
+
+	public static class Baby {
+
+		Baby() {
+			System.out.println("Neeeeeeeeeeeeee");
+		}
+
+		{
+			System.out.println("Empty {}");
+		}
+
+		static {
+			System.out.println("static call");
 		}
 	}
 
