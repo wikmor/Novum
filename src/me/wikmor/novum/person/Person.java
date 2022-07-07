@@ -7,7 +7,9 @@ public class Person extends LivingEntity {
 
 	private final int age; // if fields are final, then you must set their value in the constructor
 
-	public Person() {
+	private static int ageStatic = 5;
+
+	private Person() {
 		super(null);
 
 		this.age = 0;
@@ -21,6 +23,12 @@ public class Person extends LivingEntity {
 		super(name);
 
 		this.age = age;
+	}
+
+	protected final String privateMethod(String test, int demo) {
+		System.out.println("Age of " + this.getName() + " is " + this.age);
+
+		return "test=" + test + ", demo=" + demo;
 	}
 
 	protected void customMethod() {
@@ -44,11 +52,11 @@ public class Person extends LivingEntity {
 	public boolean equals(Object obj) {
 		/*if (obj instanceof Person) {
 			Person otherPerson = (Person) obj;
-
+		
 			if (otherPerson.getAge() == this.age && otherPerson.getName().equals(this.getName()))
 				return true;
 		}
-
+		
 		return false;*/
 
 		return obj instanceof Person && ((Person) obj).getAge() == this.age && /*((Person) obj).getName().equals(this.getName())*/ super.equals(obj);

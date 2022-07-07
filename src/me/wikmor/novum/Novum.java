@@ -1,5 +1,9 @@
 package me.wikmor.novum;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -60,10 +64,11 @@ public class Novum {
 		//novum.testMultiDimensions();
 		//novum.testAnonymousAndInnerClasses();
 		//novum.testStaticConstructorAndInitializers();
-		novum.testLambda();
+		//novum.testLambda();
+		novum.testReflection();
 
 		/*int number = 10;
-		
+
 		resursivePrint(number);*/
 	}
 
@@ -115,22 +120,22 @@ public class Novum {
 
 					/*if ("+".equals(message))
 						result = sum(numbers[0], numbers[1]);
-					
+
 					else if ("-".equals(message))
 						result = subtract(numbers[0], numbers[1]);
-					
+
 					else if ("/".equals(message))
 						result = divide(numbers[0], numbers[1]);
-					
+
 					else if ("*".equals(message))
 						result = multiply(numbers[0], numbers[1]);
-					
+
 					else if ("%".equals(message))
 						result = modulo(numbers[0], numbers[1]);
-					
+
 					else {
 						System.out.println("Invalid operator: " + message);
-					
+
 						continue;
 					}*/
 
@@ -171,8 +176,8 @@ public class Novum {
 	}
 
 	private void testConstructors() {
-		Person person = new Person();
-		System.out.println("person = " + person.getName() + ", age: " + person.getAge());
+		//Person person = new Person();
+		//System.out.println("person = " + person.getName() + ", age: " + person.getAge());
 
 		Person anonymous = new Person(2);
 		System.out.println("anonymous = " + anonymous.getName() + ", age: " + anonymous.getAge());
@@ -560,7 +565,7 @@ public class Novum {
 		System.out.println(clearedMessages);
 
 		/*join(new Consumer<String>() {
-
+		
 			@Override
 			public void accept(String t) {
 				System.out.println(t);
@@ -590,6 +595,54 @@ public class Novum {
 	@Deprecated
 	static void join(Consumer<String> consumer) {
 		consumer.accept("Hello from method reference!");
+	}
+
+	private void testReflection() {
+		try {
+			Person person = new Person("Wiktor", 20);
+
+			// Get a field
+			//person.age;
+			Field field = Person.class.getDeclaredField("age");
+
+			field.setAccessible(true);
+			int age = (int) field.get(person);
+
+			System.out.println("Age is " + age);
+
+			// Get a static field
+			//Static has no instance so...
+			Field staticField = Person.class.getDeclaredField("ageStatic");
+
+			staticField.setAccessible(true);
+			int ageStatic = (int) staticField.get(null);
+
+			System.out.println("Age is " + ageStatic);
+
+			// Get a method (with or without arguments)
+			Method method = Person.class.getDeclaredMethod("privateMethod", String.class, int.class);
+			method.setAccessible(true);
+
+			String object = (String) method.invoke(person /*null for static*/, "Hello banana!", 1337);
+			System.out.println(object);
+
+			if (Modifier.isFinal(method.getModifiers()) && Modifier.isProtected(method.getModifiers()))
+				System.out.println("Method privateMethod is protected and final!");
+
+			// Get a constructor
+			Constructor constructor = Person.class.getDeclaredConstructor();
+			constructor.setAccessible(true);
+
+			Person newPerson = (Person) constructor.newInstance();
+
+			System.out.println(newPerson);
+
+			// Get a class without importing it
+			// Class.forName("net.minecraft.server.WEIRD_NUMBER.Achievement");
+
+		} catch (ReflectiveOperationException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	public static void resursivePrint(int number) {
