@@ -1,17 +1,20 @@
 package me.wikmor.novum.house;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public class House {
 
 	private static int registeredHouses = 0;
 
 	private final int size;
 
-	public House(int size) {
+	/*public House(int size) {
 		this.size = size;
 
 		//registeredHouses++;
 		System.out.println("New house registered! Total: " + ++registeredHouses);
-	}
+	}*/
 
 	public int getSize() {
 		return size;

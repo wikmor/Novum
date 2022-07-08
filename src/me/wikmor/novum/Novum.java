@@ -25,6 +25,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import lombok.NonNull;
 import me.wikmor.novum.house.House;
 import me.wikmor.novum.person.Employee;
 import me.wikmor.novum.person.EntityRegister;
@@ -74,10 +75,11 @@ public class Novum {
 		//novum.testReflection();
 		//novum.testThreads();
 		//novum.testSynchronized();
-		novum.testTimer();
+		//novum.testTimer();
+		novum.testLombok();
 
 		/*int number = 10;
-		
+
 		resursivePrint(number);*/
 	}
 
@@ -129,22 +131,22 @@ public class Novum {
 
 					/*if ("+".equals(message))
 						result = sum(numbers[0], numbers[1]);
-					
+
 					else if ("-".equals(message))
 						result = subtract(numbers[0], numbers[1]);
-					
+
 					else if ("/".equals(message))
 						result = divide(numbers[0], numbers[1]);
-					
+
 					else if ("*".equals(message))
 						result = multiply(numbers[0], numbers[1]);
-					
+
 					else if ("%".equals(message))
 						result = modulo(numbers[0], numbers[1]);
-					
+
 					else {
 						System.out.println("Invalid operator: " + message);
-					
+
 						continue;
 					}*/
 
@@ -574,7 +576,7 @@ public class Novum {
 		System.out.println(clearedMessages);
 
 		/*join(new Consumer<String>() {
-
+		
 			@Override
 			public void accept(String t) {
 				System.out.println(t);
@@ -733,7 +735,7 @@ public class Novum {
 
 			/* for not static classes/methods use:
 			synchronized (this) {
-			
+
 			}*/
 
 			synchronized (LOCK) {
@@ -766,6 +768,18 @@ public class Novum {
 			}
 		}, 2000 /*wait 2sec*/, 100 /*run every 0,1sec like a psychopath*/);
 
+	}
+
+	private void testLombok() {
+		Person person = new Person(20);
+		System.out.println(person);
+
+		demo(null);
+
+	}
+
+	static void demo(@NonNull String message) {
+		System.out.println(message);
 	}
 
 	public static void resursivePrint(int number) {

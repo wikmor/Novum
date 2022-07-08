@@ -3,7 +3,6 @@ package me.wikmor.novum;
 import java.util.Objects;
 
 public class UniquePerson {
-
 	private final String uniqueId;
 
 	public UniquePerson(String uniqueId) {
