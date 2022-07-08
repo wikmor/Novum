@@ -15,6 +15,8 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -32,6 +34,10 @@ import me.wikmor.novum.water.BottleRegister;
 import me.wikmor.novum.water.WaterBottle;
 
 public class Novum {
+
+	private static final Object LOCK = new Object();
+
+	static int decreaseMe = 10; // ConcurrentHashMap for maps = no need to use synchronized keyword
 
 	public static void main(String[] args) {
 		Novum novum = new Novum();
@@ -65,10 +71,13 @@ public class Novum {
 		//novum.testAnonymousAndInnerClasses();
 		//novum.testStaticConstructorAndInitializers();
 		//novum.testLambda();
-		novum.testReflection();
+		//novum.testReflection();
+		//novum.testThreads();
+		//novum.testSynchronized();
+		novum.testTimer();
 
 		/*int number = 10;
-
+		
 		resursivePrint(number);*/
 	}
 
@@ -120,22 +129,22 @@ public class Novum {
 
 					/*if ("+".equals(message))
 						result = sum(numbers[0], numbers[1]);
-
+					
 					else if ("-".equals(message))
 						result = subtract(numbers[0], numbers[1]);
-
+					
 					else if ("/".equals(message))
 						result = divide(numbers[0], numbers[1]);
-
+					
 					else if ("*".equals(message))
 						result = multiply(numbers[0], numbers[1]);
-
+					
 					else if ("%".equals(message))
 						result = modulo(numbers[0], numbers[1]);
-
+					
 					else {
 						System.out.println("Invalid operator: " + message);
-
+					
 						continue;
 					}*/
 
@@ -565,7 +574,7 @@ public class Novum {
 		System.out.println(clearedMessages);
 
 		/*join(new Consumer<String>() {
-		
+
 			@Override
 			public void accept(String t) {
 				System.out.println(t);
@@ -643,6 +652,120 @@ public class Novum {
 		} catch (ReflectiveOperationException ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	private void testThreads() {
+		System.out.println("Main thread number is: " + Thread.currentThread().getId());
+
+		for (int i = 1; i <= 5; i++) {
+			Counter counter = new Counter();
+
+			counter.start(); // if implements Runnable then: new Thread(counter).start();
+		}
+
+		System.out.println("Program finished.");
+
+		connectToDataBase(integer -> System.out.println("Here's the number " + integer));
+	}
+
+	// How to process results from the Internet, databases, web servers.
+	// Because you can't easily do a return statement here.
+	private static void connectToDataBase(Consumer<Integer> consumer) {
+		new Thread() {
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				int randomNumber = 10;
+
+				consumer.accept(randomNumber);
+			}
+		}.start();
+	}
+
+	private static class Counter extends Thread /*or implements Runnable*/ {
+
+		static int threadCount = 10;
+
+		private final int id;
+
+		Counter() {
+			this.id = ++threadCount;
+		}
+
+		@Override
+		public void run() {
+
+			if (this.id != 13)
+				throw new RuntimeException("Thread " + this.id + " is broken"); // even then the one (thread id=13) will be executed to the end
+
+			for (int i = 1; i <= 5; i++) {
+				System.out.println("[id=" + /*Thread.currentThread().getId()*/ this.id + "] Number is: " + i);
+
+				try {
+					Thread.sleep(1000);
+
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	private void testSynchronized() {
+		new Accessor().start();
+		new Accessor().start();
+		new Accessor().start();
+	}
+
+	static void printMe() {
+		System.out.println("DecreaseMe is: " + decreaseMe);
+	}
+
+	private static class Accessor extends Thread {
+		@Override
+		public void run() {
+
+			/* for not static classes/methods use:
+			synchronized (this) {
+			
+			}*/
+
+			synchronized (LOCK) {
+				while (decreaseMe-- > 0) {
+					printMe();
+				}
+			}
+		}
+	}
+
+	private void testTimer() {
+		Timer timer = new Timer(); // Timer doesn't create a new thread!
+
+		timer.schedule(new TimerTask() {
+
+			@Override
+			public void run() {
+				System.out.println("Timer task run");
+			}
+
+		}, 1000);
+
+		timer.scheduleAtFixedRate(new TimerTask() {
+
+			@Override
+			public void run() {
+				System.out.println("Timer is running!");
+
+				this.cancel();
+			}
+		}, 2000 /*wait 2sec*/, 100 /*run every 0,1sec like a psychopath*/);
+
 	}
 
 	public static void resursivePrint(int number) {
